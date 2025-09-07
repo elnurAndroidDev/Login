@@ -1,9 +1,7 @@
-package com.isaevapps.login
+package com.isaevapps.login.ui.screen
 
-import android.widget.Space
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.isaevapps.login.R
 import com.isaevapps.login.ui.theme.FutureRed
 import com.isaevapps.login.ui.theme.LoginTheme
 
