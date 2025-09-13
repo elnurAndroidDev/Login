@@ -1,5 +1,6 @@
 package com.isaevapps.login.auth
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
@@ -53,11 +54,12 @@ class AuthViewModel : ViewModel() {
 
     private fun ok() {
         _state.update {
-            it.copy(isLoading = false, error = null)
+            it.copy(isLoading = false, user = auth.currentUser, error = null)
         }
     }
 
     private fun fail(ex: Exception?) {
+        Log.e("AuthViewModel", "Authentication failed", ex)
         _state.update {
             it.copy(isLoading = false, user = null, error = mapError(ex))
         }

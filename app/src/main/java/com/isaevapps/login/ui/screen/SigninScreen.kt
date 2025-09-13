@@ -70,7 +70,7 @@ fun SignInScreen(
 
     val titleText = if (isSignUp) "Sign Up" else "Sign In"
     val primaryText = if (isSignUp) "Create Account" else "Sign In"
-    val bottomPrompt = if (isSignUp) "I already have an account" else "I'm a new user?"
+    val bottomPrompt = if (isSignUp) "I already have an account " else "I'm a new user?"
     val bottomLink = if (isSignUp) "Sign In" else "Sign Up"
 
     Column(
@@ -198,47 +198,49 @@ fun SignInScreen(
             ) {
                 Text("Forget Number", fontWeight = FontWeight.SemiBold)
             }
-
-            Spacer(Modifier.height(if (isSignUp) 32.dp else 24.dp))
-
-            Button(
-                onClick = { onPrimary(email, password) },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = PrimaryRed,
-                    contentColor = Color.White
-                ),
-                shape = MaterialTheme.shapes.medium,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(52.dp)
-
-            ) {
-                Text(primaryText, fontWeight = FontWeight.Bold)
-            }
-            Spacer(Modifier.weight(1f))
-
-            val annotated = buildAnnotatedString {
-                append(bottomPrompt)
-                pushStringAnnotation(tag = "switch", annotation = "switch")
-                withStyle(SpanStyle(color = PrimaryRed, fontWeight = FontWeight.Bold)) {
-                    append(bottomLink)
-                }
-                pop()
-            }
-            ClickableText(
-                text = annotated,
-                onClick = { offset ->
-                    annotated.getStringAnnotations(
-                        tag = "switch",
-                        start = offset,
-                        end = offset
-                    ).firstOrNull()?.let {
-                        onSwitch()
-                    }
-                },
-                modifier = Modifier.padding(vertical = 18.dp).navigationBarsPadding()
-            )
         }
+
+        Spacer(Modifier.height(if (isSignUp) 32.dp else 24.dp))
+
+        Button(
+            onClick = { onPrimary(email, password) },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = PrimaryRed,
+                contentColor = Color.White
+            ),
+            shape = MaterialTheme.shapes.medium,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(52.dp)
+
+        ) {
+            Text(primaryText, fontWeight = FontWeight.Bold)
+        }
+        Spacer(Modifier.weight(1f))
+
+        val annotated = buildAnnotatedString {
+            append(bottomPrompt)
+            pushStringAnnotation(tag = "switch", annotation = "switch")
+            withStyle(SpanStyle(color = PrimaryRed, fontWeight = FontWeight.Bold)) {
+                append(bottomLink)
+            }
+            pop()
+        }
+        ClickableText(
+            text = annotated,
+            onClick = { offset ->
+                annotated.getStringAnnotations(
+                    tag = "switch",
+                    start = offset,
+                    end = offset
+                ).firstOrNull()?.let {
+                    onSwitch()
+                }
+            },
+            modifier = Modifier
+                .padding(vertical = 18.dp)
+                .navigationBarsPadding()
+        )
     }
 }
 
